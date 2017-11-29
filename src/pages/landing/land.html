@@ -1,0 +1,87 @@
+<ion-header>
+	<ion-toolbar id="tool">
+    	<button ion-button  menuToggle>
+	      <ion-icon name="menu"></ion-icon>
+	    </button>
+    <ion-title text-center
+      style="font-size: 36px;
+       letter-spacing: 3px;">Riziki</ion-title>
+    <ion-buttons end padding>
+			<button ion-button icon-left (click)="toSearch()" style="font-size: 18px;">
+				<ion-icon name="search" style="font-size: 36px;"></ion-icon>
+			</button>
+			    <button ion-button icon-left (click)="toCart()" style="font-size: 18px;">
+			      <ion-icon name="cart" style="font-size: 36px;"></ion-icon>
+			      {{ total }}
+			    </button>
+          <button ion-button icon-only (click)="presentPopover($event)" style="font-size: 18px;">
+			      <ion-icon name="more" style="font-size: 36px;"></ion-icon>
+			      {{ total }}
+			    </button>
+			</ion-buttons>
+   </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <img src="assets/img/images.jpeg" style="height: 80px; width: 100%;"/>
+ <br>
+
+  <ion-slides #banner autoplay="1000"
+							speed="1000" loop="true"
+							paginationType="bullets"
+							pager="true"
+							style="height: 38%; width: 100%;" >
+		<ion-slide *ngFor="let one of images">
+			  <img src="{{one}}">
+		</ion-slide>
+	</ion-slides>
+	<br>
+
+	<ion-scroll scrollX="true" style="width: 100%; height:30%" >
+        <ion-row nowrap class="headerChip">
+          <div *ngFor="let single of brandy; let idx = index">
+          <ion-chip>
+						<ion-avatar>
+					    <img src="{{ single }}">
+					  </ion-avatar>
+          <div></div>
+          </ion-chip>
+          </div>
+					&nbsp;
+					&nbsp;
+        </ion-row>
+      </ion-scroll>
+
+	<hr>
+	<h3> Categories </h3>
+	<hr>
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6 *ngFor="let one of categories">
+				<ion-card style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+						<p>{{ one }}</p>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<hr>
+	<h3>Best Sellers</h3>
+	<hr>
+	<ion-scroll scrollX="true" style="width: 100%; height:30%">
+		<ion-row nowrap class="scroll-item">
+	  <ion-col col-6 *ngFor="let item of items">
+
+		 <ion-card padding>
+		   <img src="{{ item.photo }}" style="width: 130px; height: 100px;">
+
+			 <ion-card-title>
+				   <p> {{ item.name }} </p>
+			   </ion-card-title>
+			
+		</ion-card>
+
+	    </ion-col>
+   </ion-row>
+	</ion-scroll>
+</ion-content>
